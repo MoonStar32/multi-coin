@@ -16,9 +16,7 @@ class CerrenciesRepository implements AbstractCerrenciesRepository {
       final Map<String, dynamic> valute = e.value;
       final price = valute["Value"];
       return CurrencyCoin(
-        name: e.key,
-        price: price.toDouble(),
-      );
+          name: e.value["Name"], price: price.toDouble(), sense: e.key);
     }).toList();
     return cerrenciesCoinsList;
   }

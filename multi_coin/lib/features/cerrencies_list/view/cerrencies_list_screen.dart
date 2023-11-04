@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:multi_coin/repositories/abstract_cerrencies_lrepository.dart';
+import 'package:multi_coin/theme/widgets/change_theme_button.dart';
+
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../bloc/cerrencies_list_bloc.dart';
 import '../widgets/cerrencies_tile.dart';
@@ -20,17 +23,68 @@ class CerrenciesListScreen extends StatefulWidget {
 class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
   final _cryptoListBloc =
       CerrenciesListBloc(GetIt.I<AbstractCerrenciesRepository>());
+
+  String _version = '';
+  Future<void> _getVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version;
+    setState(() {
+      _version = version;
+    });
+  }
+
   @override
   void initState() {
     _cryptoListBloc.add(LoadCerrenciesList());
     super.initState();
+    _getVersion();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Currencies Lsit')),
+      appBar: AppBar(
+        title: const Text('Currencies Lsit'),
+      ),
+      endDrawer: Drawer(
+        backgroundColor: theme.cardColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 40),
+              child: Center(
+                child: Text(
+                  'Settings',
+                  style: theme.textTheme.bodyMedium,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(90, 0, 50, 100),
+              child: Row(
+                children: [
+                  Text(
+                    'Светлый',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                  ChangeThemeButtonWidget(),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 30),
+              child: Center(
+                child: Text(
+                  'App Version: $_version',
+                  style: theme.textTheme.labelSmall,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
       body: RefreshIndicator(
         onRefresh: () async {
           final completer = Completer();
@@ -85,21 +139,6 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
           },
         ),
       ),
-
-      // (_cryptoCoinsList == null)
-      //     ? const Center(
-      //         child: CircularProgressIndicator(),
-      //       )
-      //     : ListView.separated(
-      //         padding: const EdgeInsets.only(top: 16),
-      //         itemCount: _cryptoCoinsList!.length,
-      //         separatorBuilder: (context, index) => const Divider(),
-      //         itemBuilder: (context, i) {
-      //           final coin = _cryptoCoinsList![i];
-      //           return CryptoCoinTile(
-      //             coin: coin,
-      //           );
-      //         }),
     );
   }
 }
