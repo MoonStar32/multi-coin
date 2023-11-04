@@ -12,18 +12,32 @@ class CerrenciesCoinTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return ListTile(
-      title: Text(coin.name, style: theme.textTheme.bodyMedium),
-      subtitle: Text('${coin.price} \₽', style: theme.textTheme.labelSmall),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
+    return SafeArea(
+        child: Container(
+      margin: const EdgeInsets.fromLTRB(12, 0, 10, 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: theme.cardColor,
+        boxShadow: [
+          new BoxShadow(
+            color: theme.shadowColor,
+          ),
+        ],
       ),
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          '/currency',
-          arguments: coin,
-        );
-      },
-    );
+      child: ListTile(
+        title: Text(coin.name, style: theme.textTheme.bodyMedium),
+        leading: Text(coin.sense, style: theme.textTheme.bodyMedium),
+        subtitle: Text('${coin.price} \₽', style: theme.textTheme.labelSmall),
+        trailing: const Icon(
+          Icons.arrow_forward_ios,
+        ),
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            '/currency',
+            arguments: coin,
+          );
+        },
+      ),
+    ));
   }
 }
