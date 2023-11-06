@@ -7,7 +7,7 @@ class CurrencyCoin extends Equatable {
   final String name;
   final double price;
   final String sense;
-  // Добавьте фабричный конструктор для создания объекта из JSON
+
   factory CurrencyCoin.fromJson(Map<String, dynamic> json) {
     return CurrencyCoin(
       name: json['name'],
@@ -16,7 +16,6 @@ class CurrencyCoin extends Equatable {
     );
   }
 
-  // Добавьте метод toJson для сериализации объекта в JSON
   Map<String, dynamic> toJson() {
     return {
       'name': name,
