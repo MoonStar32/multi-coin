@@ -45,7 +45,7 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Currencies Lsit'),
+        title: const Text('Currencies List'),
       ),
       endDrawer: Drawer(
         backgroundColor: theme.cardColor,
@@ -53,7 +53,7 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 40),
+              padding: const EdgeInsets.only(top: 40),
               child: Center(
                 child: Text(
                   'Settings',
@@ -62,7 +62,7 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(90, 0, 50, 100),
+              padding: const EdgeInsets.fromLTRB(90, 0, 50, 100),
               child: Row(
                 children: [
                   Text(
@@ -74,7 +74,7 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 30),
+              padding: const EdgeInsets.only(bottom: 30),
               child: Center(
                 child: Text(
                   'App Version: $_version',
@@ -114,7 +114,7 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
                   children: [
                     Text(
                       'Somthing went wrong',
-                      style: theme.textTheme.headlineMedium,
+                      style: theme.textTheme.bodyMedium,
                     ),
                     Text(
                       'Please try again later',
