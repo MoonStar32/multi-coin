@@ -1,15 +1,3 @@
-// part of 'currency_details_bloc.dart';
-
-// abstract class CerrenciesListEvent extends Equatable {}
-
-// class LoadCerrenciesDetails extends CerrenciesListEvent {
-//   LoadCerrenciesDetails({this.completer});
-//   final Completer? completer;
-
-//   @override
-//   List<Object?> get props => [completer];
-// }
-
 part of 'currency_details_bloc.dart';
 
 abstract class CurrencyCoinDetailsEvent extends Equatable {
