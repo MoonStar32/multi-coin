@@ -46,7 +46,7 @@ class CerrenciesRepository implements AbstractCerrenciesRepository {
       await prefs.setStringList(cacheKey, coinsJsonList);
 
       // Устанавливаем таймер для очистки кэша через 6 часов
-      Timer(Duration(hours: cacheDurationInHours), () {
+      Timer(const Duration(hours: cacheDurationInHours), () {
         prefs.remove(cacheKey);
       });
 

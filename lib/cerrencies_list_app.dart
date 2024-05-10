@@ -4,7 +4,7 @@ import 'package:multi_coin/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class CerrenciesListApp extends StatelessWidget {
-  const CerrenciesListApp({Key? key});
+  const CerrenciesListApp({super.key});
 
   @override
   Widget build(BuildContext context) {

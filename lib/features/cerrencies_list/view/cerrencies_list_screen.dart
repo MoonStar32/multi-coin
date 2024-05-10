@@ -69,7 +69,7 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
                     'Светлый',
                     style: theme.textTheme.bodyMedium,
                   ),
-                  ChangeThemeButtonWidget(),
+                  const ChangeThemeButtonWidget(),
                 ],
               ),
             ),

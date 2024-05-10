@@ -23,9 +23,7 @@ class CurrencyCoinDetailsBloc
       if (state is! CurrencyCoinDetailsLoaded) {
         emit(const CurrencyCoinDetailsLoading());
       }
-
-      final coin = await coinsRepository.getCoinsList();
-    } catch (e, st) {
+    } catch (e) {
       emit(CurrencyCoinDetailsLoadingFailure(e));
     }
   }

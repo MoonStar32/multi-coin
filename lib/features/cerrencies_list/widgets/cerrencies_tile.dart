@@ -19,7 +19,7 @@ class CerrenciesCoinTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         color: theme.cardColor,
         boxShadow: [
-          new BoxShadow(
+          BoxShadow(
             color: theme.shadowColor,
           ),
         ],
@@ -27,7 +27,7 @@ class CerrenciesCoinTile extends StatelessWidget {
       child: ListTile(
         title: Text(coin.name, style: theme.textTheme.bodyMedium),
         leading: Text(coin.sense, style: theme.textTheme.bodyMedium),
-        subtitle: Text('${coin.price} \₽', style: theme.textTheme.labelSmall),
+        subtitle: Text('${coin.price} ₽', style: theme.textTheme.labelSmall),
         trailing: const Icon(
           Icons.arrow_forward_ios,
         ),

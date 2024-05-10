@@ -37,7 +37,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
               child: BaseCard(
                 child: Center(
                   child: Text(
-                    '${coin!.sense}',
+                    coin!.sense,
                     style: const TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.w700,
@@ -51,7 +51,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
               child: BaseCard(
                 child: Center(
                   child: Text(
-                    '${coin!.name}',
+                    coin!.name,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -63,7 +63,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
             BaseCard(
               child: Center(
                 child: Text(
-                  '${coin!.price} \₽',
+                  '${coin!.price} ₽',
                   style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w700,
