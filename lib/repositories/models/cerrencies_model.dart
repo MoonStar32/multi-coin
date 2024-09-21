@@ -1,8 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class CurrencyCoin extends Equatable {
-  const CurrencyCoin(
-      {required this.name, required this.price, required this.sense});
+  const CurrencyCoin({
+    required this.name,
+    required this.price,
+    required this.sense,
+  });
 
   final String name;
   final double price;

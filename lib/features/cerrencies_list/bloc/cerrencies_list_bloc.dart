@@ -10,20 +10,25 @@ part 'cerrencies_list_state.dart';
 
 class CerrenciesListBloc
     extends Bloc<CerrenciesListEvent, CerrenciesListState> {
-  CerrenciesListBloc(this.coinsRepository) : super(CerrenciesListInitial()) {
-    on<LoadCerrenciesList>(((event, emit) async {
-      try {
-        if (state is! CerrenciesListLoaded) {
-          emit(CerrenciesListLoading());
+  CerrenciesListBloc(this.coinsRepository)
+      : super(
+          CerrenciesListInitial(),
+        ) {
+    on<LoadCerrenciesList>(
+      ((event, emit) async {
+        try {
+          if (state is! CerrenciesListLoaded) {
+            emit(CerrenciesListLoading());
+          }
+          final coinsList = await coinsRepository.getCoinsList();
+          emit((CerrenciesListLoaded(coinsList: coinsList)));
+        } catch (e) {
+          emit(CerrenciesListLoadingFuilure(exception: e));
+        } finally {
+          event.completer?.complete();
         }
-        final coinsList = await coinsRepository.getCoinsList();
-        emit((CerrenciesListLoaded(coinsList: coinsList)));
-      } catch (e) {
-        emit(CerrenciesListLoadingFuilure(exception: e));
-      } finally {
-        event.completer?.complete();
-      }
-    }));
+      }),
+    );
   }
 
   final AbstractCerrenciesRepository coinsRepository;

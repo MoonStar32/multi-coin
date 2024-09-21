@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BaseCard extends StatelessWidget {
-  const BaseCard({super.key, required this.child});
+  const BaseCard({
+    super.key,
+    required this.child,
+  });
 
   final Widget child;
 
@@ -15,7 +18,9 @@ class BaseCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16), color: Colors.cyan),
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.cyan,
+      ),
       child: child,
     );
   }

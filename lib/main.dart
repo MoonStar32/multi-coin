@@ -6,6 +6,9 @@ import 'repositories/cerrencies_repository.dart';
 
 void main() {
   GetIt.I.registerLazySingleton<AbstractCerrenciesRepository>(
-      () => CerrenciesRepository());
-  runApp(const CerrenciesListApp());
+    () => CerrenciesRepository(),
+  );
+  runApp(
+    const CerrenciesListApp(),
+  );
 }

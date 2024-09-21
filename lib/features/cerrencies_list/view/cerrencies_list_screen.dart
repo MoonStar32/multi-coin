@@ -3,13 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:multi_coin/features/cerrencies_list/bloc/cerrencies_list_bloc.dart';
+import 'package:multi_coin/features/cerrencies_list/widgets/cerrencies_tile.dart';
 import 'package:multi_coin/repositories/abstract_cerrencies_lrepository.dart';
 import 'package:multi_coin/theme/widgets/change_theme_button.dart';
-
 import 'package:package_info_plus/package_info_plus.dart';
-
-import '../bloc/cerrencies_list_bloc.dart';
-import '../widgets/cerrencies_tile.dart';
 
 class CerrenciesListScreen extends StatefulWidget {
   const CerrenciesListScreen({
@@ -21,8 +19,9 @@ class CerrenciesListScreen extends StatefulWidget {
 }
 
 class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
-  final _cryptoListBloc =
-      CerrenciesListBloc(GetIt.I<AbstractCerrenciesRepository>());
+  final _cryptoListBloc = CerrenciesListBloc(
+    GetIt.I<AbstractCerrenciesRepository>(),
+  );
 
   String _version = '';
   Future<void> _getVersion() async {
@@ -35,7 +34,9 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
 
   @override
   void initState() {
-    _cryptoListBloc.add(LoadCerrenciesList());
+    _cryptoListBloc.add(
+      LoadCerrenciesList(),
+    );
     super.initState();
     _getVersion();
   }
@@ -88,7 +89,9 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           final completer = Completer();
-          _cryptoListBloc.add(LoadCerrenciesList(completer: completer));
+          _cryptoListBloc.add(
+            LoadCerrenciesList(completer: completer),
+          );
           return completer.future;
         },
         child: BlocBuilder<CerrenciesListBloc, CerrenciesListState>(
@@ -96,15 +99,16 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
           builder: (context, state) {
             if (state is CerrenciesListLoaded) {
               return ListView.separated(
-                  padding: const EdgeInsets.only(top: 16),
-                  itemCount: state.coinsList.length,
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemBuilder: (context, i) {
-                    final coin = state.coinsList[i];
-                    return CerrenciesCoinTile(
-                      coin: coin,
-                    );
-                  });
+                padding: const EdgeInsets.only(top: 16),
+                itemCount: state.coinsList.length,
+                separatorBuilder: (context, index) => const Divider(),
+                itemBuilder: (context, i) {
+                  final coin = state.coinsList[i];
+                  return CerrenciesCoinTile(
+                    coin: coin,
+                  );
+                },
+              );
             }
             if (state is CerrenciesListLoadingFuilure) {
               return Center(
@@ -118,14 +122,18 @@ class _CerrenciesListScreenState extends State<CerrenciesListScreen> {
                     ),
                     Text(
                       'Please try again later',
-                      style: theme.textTheme.labelSmall?.copyWith(fontSize: 16),
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        fontSize: 16,
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     TextButton(
                       onPressed: () {
-                        _cryptoListBloc.add(LoadCerrenciesList());
+                        _cryptoListBloc.add(
+                          LoadCerrenciesList(),
+                        );
                       },
                       child: const Text('Somthing went wrong'),
                     )
