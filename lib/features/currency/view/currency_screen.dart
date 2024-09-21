@@ -16,7 +16,9 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   void didChangeDependencies() {
     final args = ModalRoute.of(context)?.settings.arguments;
     assert(
-        args != null && args is CurrencyCoin, "'You must provide String args");
+      args != null && args is CurrencyCoin,
+      "'You must provide String args",
+    );
 
     coin = args as CurrencyCoin;
     setState(() {
@@ -27,13 +29,13 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Coin'),
-        ),
-        body: Column(
-          children: [
-            BaseCard(
-                child: Center(
+      appBar: AppBar(
+        title: const Text('Coin'),
+      ),
+      body: Column(
+        children: [
+          BaseCard(
+            child: Center(
               child: BaseCard(
                 child: Center(
                   child: Text(
@@ -45,9 +47,10 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                   ),
                 ),
               ),
-            )),
-            BaseCard(
-                child: Center(
+            ),
+          ),
+          BaseCard(
+            child: Center(
               child: BaseCard(
                 child: Center(
                   child: Text(
@@ -59,19 +62,21 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                   ),
                 ),
               ),
-            )),
-            BaseCard(
-              child: Center(
-                child: Text(
-                  '${coin!.price} ₽',
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w700,
-                  ),
+            ),
+          ),
+          BaseCard(
+            child: Center(
+              child: Text(
+                '${coin!.price} ₽',
+                style: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-            )
-          ],
-        ));
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

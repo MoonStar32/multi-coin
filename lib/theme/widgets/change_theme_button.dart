@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:multi_coin/theme/theme.dart';
 import 'package:provider/provider.dart';
-
-import '../theme.dart';
 
 class ChangeThemeButtonWidget extends StatelessWidget {
   const ChangeThemeButtonWidget({super.key});
